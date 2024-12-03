@@ -1,0 +1,118 @@
+<!-- UI overlay -->
+<div class="ui-container">
+    <!-- popup welcome -->
+    <div class="welcome-popup-container">
+        <div id="welcome-popup">
+            <div class="popup-header">
+                <div>Welcome to the AR Art Explorer!</div>
+                <button id="popup-close-btn" class="popup-exit">X</button>
+            </div>
+            <div class="popup-content">
+                Get ready to uncover hidden 3D treasures! Simply point your
+                camera at any of the three scannable paintings, and a 3D model
+                will appear right before your eyes. Use one finger to rotate and
+                explore each model in detail.
+                <br />
+                Tap on "Scannable Images" to view all paintings you can
+                discover. Happy exploring!
+            </div>
+        </div>
+    </div>
+
+    <!-- bottom nav UI -->
+    <div class="bottom-nav">
+        <div class="nav-items">
+            <div class="menu-item">
+                <button id="expand-scannable-btn" class="menu-item-text">
+                    Scannable Images ^
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="scanable-imgs-container">
+        <img src="assets/Images/chinese_flowers.jpg" alt="test" />
+        <img src="assets/Images/super_lama.jpg" alt="test" />
+        <img src="assets/Images/yoda_drawing.jpg" alt="test" />
+    </div>
+</div>
+<!------------------>
+
+<!-- AR scene -->
+<a-scene
+    handle-popup
+    handle-3d-model-audio
+    xrextras-gesture-detector
+    landing-page
+    xrextras-loading
+    xrextras-runtime-error
+    renderer="colorManagement: true; webgl2: true;"
+    xrweb="disableWorldTracking: true"
+>
+    <!------------------------------ assets ------------------------------>
+    <a-assets>
+        <a-asset-item
+            id="yoda-model"
+            src="assets/GLB_Models/Yoda_3DModel_LowPoly.glb"
+        ></a-asset-item>
+        <a-asset-item
+            id="camel-model"
+            src="assets/GLB_Models/Camel_3DModel_LowPoly.glb"
+        ></a-asset-item>
+        <a-asset-item
+            id="flowers-model"
+            src="assets/GLB_Models/Flowers_3DModel_LowPoly.glb"
+        ></a-asset-item>
+    </a-assets>
+
+    <!-- detect target 2D img and spawn corresponding 3D model -->
+    <xrextras-named-image-target id="yoda-target" name="2D-yoda-drawing">
+        <a-entity
+            xrextras-one-finger-rotate
+            gltf-model="#yoda-model"
+            rotation="0 180 0"
+            position="0 -1.6 0"
+            scale="0.5 0.5 0.5"
+        ></a-entity>
+    </xrextras-named-image-target>
+
+    <!-- detect target 2D img and spawn corresponding 3D model -->
+    <xrextras-named-image-target id="super-lama-target" name="2D-super-lama">
+        <a-entity
+            xrextras-one-finger-rotate
+            gltf-model="#camel-model"
+            rotation="0 180 0"
+            position="0 -1 0"
+            scale="0.3 0.3 0.3"
+        ></a-entity>
+    </xrextras-named-image-target>
+
+    <!-- detect target 2D img and spawn corresponding 3D model -->
+    <xrextras-named-image-target
+        id="chinese-flowers-target"
+        name="2D-chinese-flowers"
+    >
+        <a-entity
+            xrextras-one-finger-rotate
+            gltf-model="#flowers-model"
+            rotation="0 90 0"
+            position="0 -1 0"
+            scale="0.3 0.3 0.3"
+        ></a-entity>
+    </xrextras-named-image-target>
+    <!------------------------------------------------------------------------>
+
+    <!------------------------------ core stuff ------------------------------>
+    <a-camera
+        id="camera"
+        position="0 8 8"
+        raycaster="objects: .cantap"
+        cursor="fuse: false; rayOrigin: mouse;"
+    >
+    </a-camera>
+
+    <!-- point and directional light -->
+    <a-light type="directional" intensity="0.5" position="1 1 1"></a-light>
+    <a-light type="ambient" intensity="0.7"></a-light>
+    <!------------------------------------------------------------------------>
+</a-scene>
+<!------------------>

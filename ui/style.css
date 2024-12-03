@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    /* no scrolling ty */
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* UI container for all overlaying shtuff */
+.ui-container {}

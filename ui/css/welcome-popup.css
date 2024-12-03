@@ -1,0 +1,43 @@
+/* container for popup */
+.welcome-popup-container {
+    position: absolute;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    pointer-events: none;
+}
+
+/* popup window thing */
+#welcome-popup {
+    width: 70%;
+    transform: translateY(-40px);
+    /* move up with height of bottom nav */
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border: 3px solid rgb(69, 69, 69);
+    border-radius: 10px;
+    transition: 1s ease;
+}
+
+.popup-header {
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.popup-exit {
+    font-size: 1.1em;
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: red;
+    pointer-events: all;
+}
